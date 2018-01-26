@@ -28,32 +28,32 @@ check_include_file(sys/bittypes.h  HAVE_SYS_BITTYPES_H)
 
 check_function_exists(getopt       HAVE_GETOPT)
 
-configure_file(config.h.in config.h @ONLY)
+configure_file(src/config.h.in src/config.h @ONLY)
 
 add_executable(dbgen
-	bcd2.c
-	bm_utils.c
-	build.c
-	driver.c
-	load_stub.c
-	permute.c
-	print.c
-	rnd.c
-	rng64.c
-	speed_seed.c
-	text.c
+	src/bcd2.c
+	src/bm_utils.c
+	src/build.c
+	src/driver.c
+	src/load_stub.c
+	src/permute.c
+	src/print.c
+	src/rnd.c
+	src/rng64.c
+	src/speed_seed.c
+	src/text.c
 )
 
 add_executable(qgen
-	bm_utils.c
-	build.c
-	permute.c
-	qgen.c
-	rnd.c
-	rng64.c
-	speed_seed.c
-	text.c
-	varsub.c
+	src/bm_utils.c
+	src/build.c
+	src/permute.c
+	src/qgen.c
+	src/rnd.c
+	src/rng64.c
+	src/speed_seed.c
+	src/text.c
+	src/varsub.c
 )
 
 set_property(
