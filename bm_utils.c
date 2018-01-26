@@ -24,9 +24,9 @@
 #include <time.h>
 #include <errno.h>
 #include <string.h>
-#ifdef HP
+#ifdef HAVE_STRINGS_H
 #include <strings.h>
-#endif            /* HP */
+#endif
 #include <ctype.h>
 #include <math.h>
 #ifndef _POSIX_SOURCE

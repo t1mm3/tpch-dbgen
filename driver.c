@@ -18,7 +18,7 @@
 #include <signal.h>
 #include <string.h>
 #include <errno.h>
-#ifdef HP
+#ifdef HAVE_STRINGS_H
 #include <strings.h>
 #endif
 #if (defined(WIN32)&&!defined(_POSIX_))
