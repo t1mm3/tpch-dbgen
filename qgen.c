@@ -171,7 +171,10 @@ char *cptr,
                 case 'c':
                 case 'C':
                     if ((flags & DBASE) && (strlen(SET_DBASE) > 0))
-                        fprintf(ofp, SET_DBASE, db_name);
+						{
+							const char* copy_of_set_dbase = SET_DBASE;
+	                        fprintf(ofp, copy_of_set_dbase, db_name);
+						}
                     cptr++;
                     break;
                 case 'e':
