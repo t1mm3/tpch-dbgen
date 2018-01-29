@@ -8,7 +8,7 @@ environment:
 install:
   - set "PATH=%mingw_bin%;%PATH%"
 build_script:
-  - cmake -G "MinGW Makefiles" . && mingw32-make
+  - echo "$PATH" && cmake -G "MSYS Makefiles" -DCMAKE_IGNORE_PATH="C:/Program Files/Git/usr/bin" . && mingw32-make
 test_script:
 - mingw32-make
 
