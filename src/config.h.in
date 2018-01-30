@@ -57,7 +57,7 @@
 #else
 #if (@SIZEOF_INT@ == "8")
 #define SIGNED_64_BIT_C_TYPE int
-#define SIGNED_64_BIT_PRINTF_MODIFIER ""
+#define SIGNED_64_BIT_PRINTF_MODIFIER
 #else
 #error "No standard C integer type has size 8"
 #endif
