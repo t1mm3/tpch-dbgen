@@ -26,9 +26,11 @@
 #endif
 #if (defined(WIN32)&&!defined(_POSIX_))
 #include <process.h>
+#ifdef _MSC_VER
 #pragma warning(disable:4201)
 #pragma warning(disable:4214)
 #pragma warning(disable:4514)
+#endif
 #define WIN32_LEAN_AND_MEAN
 #define NOATOM
 #define NOGDICAPMASKS
@@ -46,8 +48,10 @@
 #define NOKANJI
 #define NOMCX
 #include <windows.h>
+#ifdef _MSC_VER
 #pragma warning(default:4201)
 #pragma warning(default:4214)
+#endif
 #endif
 #endif
 

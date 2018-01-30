@@ -106,14 +106,14 @@ yes_no(char *prompt)
 {
     char      reply[128];
 
-#ifdef WIN32
+#ifdef _MSC_VER
 /* Disable warning about conditional expression is constant */ 
 #pragma warning(disable:4127)
 #endif 
 
     while (1)
         {
-#ifdef WIN32
+#ifdef _MSC_VER
 #pragma warning(default:4127)
 #endif 
         printf("%s [Y/N]: ", prompt);
@@ -223,14 +223,14 @@ julian(long date)
     offset = date - STARTDATE;
     result = STARTDATE;
 
-#ifdef WIN32
+#ifdef _MSC_VER
 /* Disable warning about conditional expression is constant */ 
 #pragma warning(disable:4127)
 #endif 
 
     while (1)
         {
-#ifdef WIN32 
+#ifdef _MSC_VER
 #pragma warning(default:4127)
 #endif 
         yr = result / 1000;
