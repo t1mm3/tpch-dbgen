@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
+cmake_policy(SET CMP0054 NEW) # Don't try to interpret "FOO" as a variable
 include(CheckIncludeFiles)
 include(CheckTypeSize)
 include(CheckSymbolExists)
@@ -63,6 +64,14 @@ set_property(
 
 set_property(
 	TARGET dbgen qgen
-	APPEND PROPERTY COMPILE_OPTIONS -Wall
+	APPEND PROPERTY C_STANDARD 99
 )
+
+if ("${CMAKE_C_COMPILER_ID}" STREQUAL "Clang")
+    set_property(TARGET dbgen qgen APPEND PROPERTY COMPILE_OPTIONS -Wall)
+elseif ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
+    set_property(TARGET dbgen qgen APPEND PROPERTY COMPILE_OPTIONS -Wall)
+elseif ("${CMAKE_C_COMPILER_ID}" STREQUAL "MSVC")
+    set_property(TARGET dbgen qgen APPEND PROPERTY COMPILE_OPTIONS -D_CRT_NONSTDC_NO_DEPRECATE -D_CRT_SECURE_NO_WARNINGS "/W3")
+endif ("${CMAKE_C_COMPILER_ID}" STREQUAL "Clang")
 

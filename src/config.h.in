@@ -88,8 +88,15 @@
 #define PATH_SEP '/'
 #endif
 
-#if (defined(WIN32) && !defined(_POSIX_))
-/* requried by move to Visual Studio 2005 */
-#define strdup(x) _strdup(x)
-#endif /* WIN32 */
+#ifdef _MSC_VER
+
+/* Disable warnings about "foo() converted to foo(void)" */
+#pragma warning(disable:4255)
+
+/* Disable warnings about "added padding to struct data members" */
+#pragma warning(disable:4820)
+
+/* Disable warnings about "function not inlined" */
+#pragma warning(disable:4710)
+#endif
 
