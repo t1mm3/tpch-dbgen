@@ -30,6 +30,9 @@ check_include_file(sys/bittypes.h  HAVE_SYS_BITTYPES_H)
 check_function_exists(getopt       HAVE_GETOPT)
 
 configure_file(src/config.h.in src/config.h @ONLY)
+# The following is necessary since the generated config.h will be placed
+# in the build directory ("binary" directory), not in the source directory
+include_directories("${CMAKE_CURRENT_BINARY_DIR}/src")
 
 add_executable(dbgen
 	src/bcd2.c
