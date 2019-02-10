@@ -31,6 +31,7 @@ int
 hd_cust (FILE *f)
 {
     static int count = 0;
+	UNUSED(f);
 
     if (! count++)
         printf("No header has been defined for the customer table\n");
@@ -42,6 +43,8 @@ int
 ld_cust (customer_t *cp, int mode)
 {
     static int count = 0;
+	UNUSED(cp);
+	UNUSED(mode);
 
     if (! count++)
         printf("%s %s\n",
@@ -55,6 +58,7 @@ int
 hd_part (FILE *f)
 {
     static int count = 0;
+	UNUSED(f);
 
     if (! count++)
         printf("No header has been defined for the part table\n");
@@ -66,6 +70,8 @@ int
 ld_part (part_t *pp, int mode)
 {
     static int count = 0;
+	UNUSED(pp);
+	UNUSED(mode);
 
     if (! count++)
         printf("No load routine has been defined for the part table\n");
@@ -77,6 +83,8 @@ int
 ld_psupp (part_t *pp, int mode)
 {
     static int count = 0;
+	UNUSED(pp);
+	UNUSED(mode);
 
     if (! count++)
         printf("%s %s\n",
@@ -92,6 +100,7 @@ int
 hd_supp (FILE *f)
 {
     static int count = 0;
+	UNUSED(f);
 
     if (! count++)
         printf("No header has been defined for the supplier table\n");
@@ -103,6 +112,9 @@ int
 ld_supp (supplier_t *sp, int mode)
 {
     static int count = 0;
+	UNUSED(sp);
+	UNUSED(mode);
+
 
     if (! count++)
         printf("%s %s\n",
@@ -117,6 +129,7 @@ int
 hd_order (FILE *f)
 {
     static int count = 0;
+	UNUSED(f);
 
     if (! count++)
         printf("No header has been defined for the order table\n");
@@ -128,6 +141,8 @@ int
 ld_order (order_t *p, int mode)
 {
     static int count = 0;
+	UNUSED(p);
+	UNUSED(mode);
 
     if (! count++)
         printf("%s %s\n",
@@ -140,6 +155,8 @@ ld_order (order_t *p, int mode)
 int ld_line (order_t *p, int mode)
 {
     static int count = 0;
+	UNUSED(p);
+	UNUSED(mode);
 
     if (! count++)
         printf("%s %s\n",
@@ -155,6 +172,7 @@ int
 hd_psupp (FILE *f)
 {
     static int count = 0;
+	UNUSED(f);
 
     if (! count++)
         printf("%s %s\n",
@@ -169,6 +187,7 @@ int
 hd_line (FILE *f)
 {
     static int count = 0;
+	UNUSED(f);
 
     if (! count++)
         printf("No header has been defined for the lineitem table\n");
@@ -180,6 +199,7 @@ int
 hd_nation (FILE *f)
 {
     static int count = 0;
+	UNUSED(f);
 
     if (! count++)
         printf("No header has been defined for the nation table\n");
@@ -191,6 +211,8 @@ int
 ld_nation (code_t *cp, int mode)
 {
     static int count = 0;
+	UNUSED(cp);
+	UNUSED(mode);
 
     if (! count++)
         printf("%s %s\n",
@@ -204,6 +226,7 @@ int
 hd_region (FILE *f)
 {
     static int count = 0;
+	UNUSED(f);
 
     if (! count++)
         printf("No header has been defined for the region table\n");
@@ -215,6 +238,8 @@ int
 ld_region (code_t *cp, int mode)
 {
     static int count = 0;
+	UNUSED(cp);
+	UNUSED(mode);
 
     if (! count++)
         printf("%s %s\n",

@@ -47,6 +47,10 @@
 #define MAX(a,b) ((a > b )?a:b)
 #define MIN(A,B)  ( (A) < (B) ? (A) : (B))
 
+#ifndef UNUSED
+#define UNUSED(x) (void) x
+#endif
+
 #define INTERNAL_ERROR(p)  {fprintf(stderr,"%s", p);abort();}
 
 #define MALLOC_CHECK(var) \
@@ -157,7 +161,7 @@ DSS_HUGE	set_state PROTO((int t, long scale, long procs, long step, DSS_HUGE *e)
 DSS_HUGE	NextRand PROTO((DSS_HUGE nSeed));
 DSS_HUGE	UnifInt PROTO((DSS_HUGE nLow, DSS_HUGE nHigh, long nStream));
 void	dss_random(DSS_HUGE *tgt, DSS_HUGE min, DSS_HUGE max, long seed);
-void	row_start(int t);
+void	row_start(void);
 void	row_stop(int t);
 void	dump_seeds(int t);
 
@@ -403,15 +407,15 @@ extern tdef tdefs[];
 #define DT_CHR		6
 
 int dbg_print(int dt, FILE *tgt, void *data, int len, int eol);
-#define PR_STR(f, str, len)		dbg_print(DT_STR, f, (void *)str, len, 1)
-#define PR_VSTR(f, str, len) 	dbg_print(DT_VSTR, f, (void *)str, len, 1)
-#define PR_VSTR_LAST(f, str, len) 	dbg_print(DT_VSTR, f, (void *)str, len, 0)
-#define PR_INT(f, str) 			dbg_print(DT_INT, f, (void *)str, 0, 1)
-#define PR_HUGE(f, str) 		dbg_print(DT_HUGE, f, (void *)str, 0, 1)
+#define PR_STR(f, str, len)            dbg_print(DT_STR, f, (void *)str, len, 1)
+#define PR_VSTR(f, str, len)   dbg_print(DT_VSTR, f, (void *)str, len, 1)
+#define PR_VSTR_LAST(f, str, len)      dbg_print(DT_VSTR, f, (void *)str, len, 0)
+#define PR_INT(f, str)                         dbg_print(DT_INT, f, (void *)str, 0, 1)
+#define PR_HUGE(f, str)                dbg_print(DT_HUGE, f, (void *)str, 0, 1)
 #define PR_HUGE_LAST(f, str)        dbg_print(DT_HUGE, f, (void *)str, 0, 0)
-#define PR_KEY(f, str) 			dbg_print(DT_KEY, f, (void *)str, 0, -1)
-#define PR_MONEY(f, str) 		dbg_print(DT_MONEY, f, (void *)str, 0, 1)
-#define PR_CHR(f, str)	 		dbg_print(DT_CHR, f, (void *)str, 0, 1)
+#define PR_KEY(f, str)                         dbg_print(DT_KEY, f, (void *)str, 0, -1)
+#define PR_MONEY(f, str)               dbg_print(DT_MONEY, f, (void *)str, 0, 1)
+#define PR_CHR(f, str)                 dbg_print(DT_CHR, f, (void *)str, 0, 1)
 #define  PR_STRT(fp)   /* any line prep for a record goes here */
 #define  PR_END(fp)    fprintf(fp, "\n")   /* finish the record here */
 #ifdef MDY_DATE

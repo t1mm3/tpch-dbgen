@@ -256,7 +256,7 @@ gen_tbl (int tnum, DSS_HUGE start, DSS_HUGE count, long upd_num)
 	for (i = start; count; count--, i++)
 	{
 		LIFENOISE (1000, i);
-		row_start(tnum);
+		row_start();
 
 		switch (tnum)
 		{
@@ -547,6 +547,7 @@ process_options (int count, char **vector)
 		default:
 			printf ("ERROR: option '%c' unknown.\n",
 				*(vector[optind] + 1));
+			// fallthrough
 		case 'h':				/* something unexpected */
 			fprintf (stderr,
 				"%s Population Generator (Version %d.%d.%d build %d)\n",

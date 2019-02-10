@@ -69,6 +69,9 @@ dbg_print(int format, FILE *target, void *data, int len, int sep)
 {
 	int dollars,
 		cents;
+#ifndef MVS
+	UNUSED(len);
+#endif
 
 	switch(format)
 	{
@@ -109,6 +112,8 @@ dbg_print(int format, FILE *target, void *data, int len, int sep)
 
 #ifdef EOL_HANDLING
 	if (sep)
+#else
+	UNUSED(sep);
 #endif /* EOL_HANDLING */
 	fprintf(target, "%c", SEPARATOR);
 	
@@ -118,7 +123,8 @@ dbg_print(int format, FILE *target, void *data, int len, int sep)
 int
 pr_cust(customer_t *c, int mode)
 {
-static FILE *fp = NULL;
+   static FILE *fp = NULL;
+   UNUSED(mode);
         
    if (fp == NULL)
         fp = print_prep(CUST, 0);
@@ -233,7 +239,8 @@ pr_order_line(order_t *o, int mode)
 int
 pr_part(part_t *part, int mode)
 {
-static FILE *p_fp = NULL;
+   static FILE *p_fp = NULL;
+   UNUSED(mode);
 
     if (p_fp == NULL)
         p_fp = print_prep(PART, 0);
