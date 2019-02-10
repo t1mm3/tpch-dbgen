@@ -33,7 +33,7 @@ Following is an explanation of the values you would need to set using the GUI or
 |-------------|-------------|--------|-----------------|
 | `DATABASE`  | qgen  | Select the name of the DBMS closest to the one you're benchmarking in terms of syntax. If unsure, choose `DB2` |  `INFORMIX` `DB2` `TDAT` `SQLSERVER` `SYBASE` `ORACLE` `VECTORWISE` `POSTGRES` |
 | `WORKLOAD`  | dbgen, qgen | Use `TPCH`   |
-| `EOL_HANDLING`  | dbgen  | Set to OFF if your DBMS doesn't support loading the data if it has a separator character at the end of each line | `ON` or `OFF` (it's a boolean really) |
+| `EOL_HANDLING`  | dbgen  | Set to `OFF` if your DBMS doesn't support loading the data if it has a separator character at the end of each line | `ON` or `OFF` (it's a boolean really) |
 
 CMake will generate files (including a Makefile) which you can then use with your platform-specific build tools, e.g. NMake for Windows or [GNU Make](https://www.gnu.org/software/make/) on Unix-like systems. If you're not sure how to use them, consult the documentation or Goole.
 
@@ -52,7 +52,7 @@ which will create the various table files (e.g. `customer.tbl`, `nation.tbl`, `r
 3|Customer#000000003|fkRGN8n|ARGENTINA7|ARGENTINA|AMERICA|11-719-748-3364|AUTOMOBILE|
 4|Customer#000000004|4u58h f|EGYPT    4|EGYPT|MIDDLE EAST|14-128-190-5944|MACHINERY|
 ```
-the fields are separated by a pipe character (`|`), and there's a trailing pipe at the end of the line - unless you set `SeparatorAtEndOfLine` option to `OFF`.
+the fields are separated by a pipe character (`|`), and there's a trailing pipe at the end of the line - unless you set `EOL_HANDLING` option to `OFF`.
 
 After generating `.tbl` files for all tables, you should now either load them directly into your DBMS, or apply some textual processing on them.
 
