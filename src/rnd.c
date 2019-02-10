@@ -13,18 +13,19 @@
 #include "config.h"
 #include <stdio.h>
 #include <math.h>
-#if (defined(LINUX)||defined(_POSIX_SOURCE))
+
+#ifdef HAVE_INTTYPES_H
+#include <inttypes.h>
+#else  /* HAVE_INTTYPES_H */
+#ifdef HAVE_STDINT_H
 #include <stdint.h>
-#endif
-#ifdef IBM
-#include <inttypes.h>
-#endif
-#ifdef SUN
-#include <inttypes.h>
-#endif
-#ifdef ATT
-#include <sys/bitypes.h>
-#endif
+#else  /* HAVE_STDINT_H */
+#ifdef HAVE_SYS_BITTYPES_H
+#include <sys/bittypes.h>
+#endif /* HAVE_SYS_BITTYPES_H */
+#endif /* HAVE_STDINT_H */
+#endif /* HAVE_INTTYPES_H */
+
 #ifdef WIN32
 #define int32_t	__int32
 #endif
@@ -44,7 +45,7 @@ dss_random(DSS_HUGE *tgt, DSS_HUGE lower, DSS_HUGE upper, long stream)
 }
 
 void
-row_start(int t)	\
+row_start(void)
 {
 	int i;
 	for (i=0; i <= MAX_STREAM; i++) 

@@ -32,11 +32,12 @@ Following is an explanation of the values you would need to set using the GUI or
 |Variable     | Used by     | How to set it?   |List of options |
 |-------------|-------------|--------|-----------------|
 | `DATABASE`  | qgen  | Select the name of the DBMS closest to the one you're benchmarking in terms of syntax. If unsure, choose `DB2` |  `INFORMIX` `DB2` `TDAT` `SQLSERVER` `SYBASE` `ORACLE` `VECTORWISE` `POSTGRES` |
-| `PLATFORM`  | dbgen, qgen | According to the platform/operating system you're using  | `ATT`, `HP`, `IBM`, `ICL`, `MVS`, `SGI`, `SUN`, `U2200`, `VMS`, `LINUX`, `MAC` |
 | `WORKLOAD`  | dbgen, qgen | Use `TPCH`   |
 | `EOL_HANDLING`  | dbgen  | Set to OFF if your DBMS doesn't support loading the data if it has a separator character at the end of each line | `ON` or `OFF` (it's a boolean really) |
 
 CMake will generate files (including a Makefile) which you can then use with your platform-specific build tools, e.g. NMake for Windows or [GNU Make](https://www.gnu.org/software/make/) on Unix-like systems. If you're not sure how to use them, consult the documentation or Goole.
+
+**Note**: The `PLATFORM` or `MACHINE` variable, which in TPC's own version had to be manually set within the `Makefile`, is now _not necessary_: Platform features will be auto-detected and taken into account (like any normal software package these days).
 
 ## <a name="using">Using `dbgen` to generate schema data</a>
 
