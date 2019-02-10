@@ -172,6 +172,10 @@ char *cptr,
                 case 'C':
                     if ((flags & DBASE) && (strlen(SET_DBASE) > 0))
 						{
+							// The following "useless" copy  helps us avoide 
+							// a compiler warning in case SET_DBASE is empty;
+							// the compiler may not notice this never gets
+							// executed for an empty SET_DBASE.
 							const char* copy_of_set_dbase = SET_DBASE;
 	                        fprintf(ofp, copy_of_set_dbase, db_name);
 						}
