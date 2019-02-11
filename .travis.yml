@@ -1,6 +1,6 @@
 branches:
   only:
-  - drop_platform_spec
+  - master
 
 language: c
 script: cmake . && make
