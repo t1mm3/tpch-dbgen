@@ -2,6 +2,9 @@
 
 This repository holds the data generation and query generation utilities (`dbgen` and `qgen` respectively) for the TPC-H analytics benchmark for DBMSes.
 
+Repository build status on Travis CI: [![Build Status](https://travis-ci.org/eyalroz/tpch-dbgen.png?branch=master)](https://travis-ci.org/eyalroz/tpch-dbgen)
+
+
 | Table of contents|
 |:----------------|
 | ["What? _Another_ fork of tpch-dbgen? Why?"](#another-fork)<br>  [About the TPC-H benchmark](#about-tpch)<br> [Building the generation utilities](#building)<br> [Using `dbgen` to generate data](#using)<br>|
