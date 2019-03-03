@@ -86,13 +86,13 @@ dbg_print(int format, FILE *target, void *data, int len, int sep)
 		break;
 #endif /* MVS */
 	case DT_INT:
-		fprintf(target, "%ld", (long)data);
+		fprintf(target, "%ld", (long)((size_t)data));
 		break;
 	case DT_HUGE:
 		fprintf(target, HUGE_FORMAT, *(DSS_HUGE *)data);
 		break;
 	case DT_KEY:
-		fprintf(target, "%ld", (long)data);
+		fprintf(target, "%ld", (long)((size_t)data));
 		break;
 	case DT_MONEY:
 		cents = (int)*(DSS_HUGE *)data;

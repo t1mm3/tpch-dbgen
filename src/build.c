@@ -381,6 +381,15 @@ mk_time(DSS_HUGE index, dss_time_t * t)
 
 	t->timekey = index + JDAY_BASE;
 	y = julian(index + STARTDATE - 1) / 1000;
+	/* This should do nothing, but is intended to satisfy overly-zealous compilers' warnings. */
+	if (y > 99)
+	{
+		y = 99;
+	}
+	else if (y < 0)
+	{
+		y = 0;
+	}
 	d = julian(index + STARTDATE - 1) % 1000;
 	while (d > months[m].dcnt + LEAP_ADJ(y, m))
 		m++;

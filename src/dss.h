@@ -411,20 +411,20 @@ int dbg_print(int dt, FILE *tgt, void *data, int len, int eol);
 #define PR_STR(f, str, len)            dbg_print(DT_STR, f, (void *)str, len, 1)
 #define PR_VSTR(f, str, len)   dbg_print(DT_VSTR, f, (void *)str, len, 1)
 #define PR_VSTR_LAST(f, str, len)      dbg_print(DT_VSTR, f, (void *)str, len, 0)
-#define PR_INT(f, str)                         dbg_print(DT_INT, f, (void *)str, 0, 1)
-#define PR_HUGE(f, str)                dbg_print(DT_HUGE, f, (void *)str, 0, 1)
-#define PR_HUGE_LAST(f, str)        dbg_print(DT_HUGE, f, (void *)str, 0, 0)
-#define PR_KEY(f, str)                         dbg_print(DT_KEY, f, (void *)str, 0, -1)
-#define PR_MONEY(f, str)               dbg_print(DT_MONEY, f, (void *)str, 0, 1)
-#define PR_CHR(f, str)                 dbg_print(DT_CHR, f, (void *)str, 0, 1)
+#define PR_INT(f, val)                         dbg_print(DT_INT, f, (void *)(size_t)val, 0, 1)
+#define PR_HUGE(f, val)                dbg_print(DT_HUGE, f, (void *)val, 0, 1)
+#define PR_HUGE_LAST(f, val)        dbg_print(DT_HUGE, f, (void *)val, 0, 0)
+#define PR_KEY(f, val)                         dbg_print(DT_KEY, f, (void *)((size_t)val), 0, -1)
+#define PR_MONEY(f, val)               dbg_print(DT_MONEY, f, (void *)((size_t)val), 0, 1)
+#define PR_CHR(f, val)                 dbg_print(DT_CHR, f, (void *)((size_t)val), 0, 1)
 #define  PR_STRT(fp)   /* any line prep for a record goes here */
 #define  PR_END(fp)    fprintf(fp, "\n")   /* finish the record here */
 #ifdef MDY_DATE
 #define  PR_DATE(tgt, yr, mn, dy)	\
-   sprintf(tgt, "%02d-%02d-19%02d", mn, dy, yr)
+snprintf(tgt, 11, "%02d-%02d-19%02d", mn, dy, yr)
 #else
 #define  PR_DATE(tgt, yr, mn, dy)	\
-sprintf(tgt, "19%02ld-%02ld-%02ld", yr, mn, dy)
+snprintf(tgt, 11, "19%02ld-%02ld-%02ld", yr, mn, dy)
 #endif /* DATE_FORMAT */
 
 /*
