@@ -1,10 +1,7 @@
-branches:
-  only:
-  - master
 
 language: c
 script: cmake . && make
-dist: trusty
+dist: xenial
 
 matrix:
   include:
@@ -41,20 +38,34 @@ matrix:
          - MATRIX_EVAL="export CC=gcc-5"
 
     - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-6
       env:
-        - MATRIX_EVAL="export CC=gcc-6"
+        - MATRIX_EVAL="echo GCC 6 should be used by default"
  
     - os: linux
       addons:
         apt:
           sources:
-            - llvm-toolchain-trusty-3.9
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env:
+        - MATRIX_EVAL="export CC=gcc-7"
+ 
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+      env:
+        - MATRIX_EVAL="export CC=gcc-8"
+ 
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-xenial-3.9
           packages:
             - clang-3.9
       env:
@@ -64,7 +75,7 @@ matrix:
       addons:
         apt:
           sources:
-            - llvm-toolchain-trusty-4.0
+            - llvm-toolchain-xenial-4.0
           packages:
             - clang-4.0
       env:
@@ -74,11 +85,35 @@ matrix:
       addons:
         apt:
           sources:
-            - llvm-toolchain-trusty-5.0
+            - llvm-toolchain-xenial-5.0
           packages:
             - clang-5.0
       env:
         - MATRIX_EVAL="export CC=clang-5.0"
+
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-xenial-6.0
+          packages:
+            - clang-6.0
+      env:
+        - MATRIX_EVAL="export CC=clang-6.0"
+    
+    - os: windows
+      addons:
+        chocolatey:
+            packages:
+                visualstudio2017buildtools
+      script: cmake -G "Visual Studio 15 2017" . && cmake --build .
+
+    - os: windows
+      addons:
+        chocolatey:
+            packages:
+                mingw
+      script: cmake -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND" . && cmake --build .
 
 before_install:
 - eval "${MATRIX_EVAL}"
