@@ -117,7 +117,13 @@ yes_no(char *prompt)
 #pragma warning(default:4127)
 #endif 
         printf("%s [Y/N]: ", prompt);
-        fgets(reply, 128, stdin);
+        char* retval = fgets(reply, 128, stdin);
+        if (retval == NULL)
+            {
+            fprintf(stderr, "Failed obtaining a reply from the console on a Y/N answer.");
+            exit(EXIT_FAILURE);
+            }
+
         switch (*reply)
             {
             case 'y':
@@ -172,7 +178,7 @@ e_str(distribution *d, int min, int max, int stream, char *dest)
     pick_str(d, stream, strtmp);
     len = (int)strlen(strtmp);
     RANDOM(loc, 0, ((int)strlen(dest) - 1 - len), stream);
-    strncpy(dest + loc, strtmp, len);
+    memcpy(dest + loc, strtmp, len);
 
     return;
 }
@@ -342,8 +348,8 @@ long      weight,
 FILE     *
 tbl_open(int tbl, char *mode)
 {
-    char      prompt[256];
-    char      fullpath[256];
+    char      prompt[1024 + 50];
+    char      fullpath[1024];
     FILE     *f;
     struct stat fstats;
     int      retcode;
