@@ -14,6 +14,7 @@ if (NOT CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE STREQUAL "")
 endif()
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 
+# Values of properties will be forwarded into the config.h
 set(DATABASE "DB2" CACHE STRING "Command language dialect to target with the qgen query generator (\"DATABASE\"")
 set_property(CACHE DATABASE PROPERTY STRINGS INFORMIX DB2 TDAT SQLSERVER SYBASE ORACLE VECTORWISE POSTGRES)
 
@@ -64,8 +65,6 @@ add_executable(qgen
 	src/text.c
 	src/varsub.c
 )
-
-set_property(TARGET dbgen qgen APPEND PROPERTY COMPILE_DEFINITIONS ${DATABASE} ${WORKLOAD})
 
 set_property(TARGET dbgen qgen APPEND PROPERTY C_STANDARD 99)
 set_property(TARGET dbgen qgen APPEND PROPERTY C_EXTENSIONS OFF)

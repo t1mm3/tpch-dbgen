@@ -26,6 +26,8 @@
 #define QDIR_TAG        "DSS_QUERY"  /* variable to point to queries */
 #define QDIR_DFLT       "queries"    /* and its default */
 
+#include "config.h"
+
 /*
  * database portability defines
  */
