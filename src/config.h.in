@@ -36,6 +36,10 @@
  *   TPCH              -- make will create TPCH (set in makefile)
  */
 
+#define @DATABASE@
+#define @WORKLOAD@
+#cmakedefine EOL_HANDLING
+
 #cmakedefine HAVE_INTTYPES_H
 #cmakedefine HAVE_STDINT_H
 #cmakedefine HAVE_SYS_BITTYPES_H

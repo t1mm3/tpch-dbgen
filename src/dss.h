@@ -2,6 +2,13 @@
  * general definitions and control information for the DSS code 
  * generator; if it controls the data set, it's here
  */
+
+#include "config.h"
+#include "shared.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+
 #ifndef DSS_H
 #define  DSS_H
 #ifdef TPCH
@@ -15,12 +22,6 @@
 #endif
 #define TPC             "Transaction Processing Performance Council"
 #define C_DATES         "1994 - 2010"
-
-#include "config.h"
-#include "shared.h"
-
-#include <stdio.h>
-#include <stdlib.h>
 
 #define  NONE		-1
 #define  PART		0
