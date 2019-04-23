@@ -16,7 +16,7 @@ message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 
 # Values of properties will be forwarded into the config.h
 set(DATABASE "DB2" CACHE STRING "Command language dialect to target with the qgen query generator (\"DATABASE\"")
-set_property(CACHE DATABASE PROPERTY STRINGS INFORMIX DB2 TDAT SQLSERVER SYBASE ORACLE VECTORWISE POSTGRES)
+set_property(CACHE DATABASE PROPERTY STRINGS INFORMIX DB2 TDAT SQLSERVER SYBASE ORACLE VECTORWISE POSTGRES MYSQL)
 
 set(WORKLOAD TPCH CACHE STRING "Choice of benchmark / query workload (\"WORKLOAD\")")
 set_property(CACHE WORKLOAD PROPERTY STRINGS TPCH)
