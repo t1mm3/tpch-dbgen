@@ -76,7 +76,11 @@ dbg_print(int format, FILE *target, void *data, int len, int sep)
 	switch(format)
 	{
 	case DT_STR:
+#ifdef DOUBLE_QUOTE_OUTPUT_STRINGS
+		fprintf(target, "\"%s\"", (char *)data);
+#else
 		fprintf(target, "%s", (char *)data);
+#endif
 		break;
 #ifdef MVS
 	case DT_VSTR:

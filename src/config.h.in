@@ -1,39 +1,17 @@
 /* 
- * this file allows the compilation of DBGEN to be tailored to specific
- * architectures and operating systems. Some options are grouped 
- * together to allow easier compilation on a given vendor's hardware.
- * 
- * The following #defines will effect the code:
+ * An explanations of some of the #define's added by this file (that
+ * aren't set directly by CMake):
  *   SEPARATOR         -- character used to separate fields in flat files
- *   STDLIB_HAS_GETOPT -- to prevent confilcts with gloabal getopt() 
  *   MDY_DATE          -- generate dates as MM-DD-YY
- *   WIN32             -- support for WindowsNT
  *   DSS_HUGE          -- 64 bit data type
  *   HUGE_FORMAT       -- printf string for 64 bit data type
- *   EOL_HANDLING      -- flat files don't need final column separator
  *
- * Certain defines must be provided in the makefile:
- *   MACHINE defines
- *   ==========
- *   ATT        -- getopt() handling
- *   HP         -- posix source inclusion differences
- *   IBM        -- posix source inclusion differences
- *   SGI        -- getopt() handling
- *   SUN        -- getopt() handling
- *   LINUX      
- *   WIN32      -- for WINDOWS
- *
- *   DATABASE defines
- *   ================
- *   DB2        -- use DB2 dialect in QGEN
- *   INFORMIX   -- use Informix dialect in QGEN
- *   SQLSERVER  -- use SQLSERVER dialect in QGEN
- *   SYBASE     -- use Sybase dialect in QGEN
- *   TDAT       -- use Teradata dialect in QGEN
- *
- *   WORKLOAD defines
- *   ================
- *   TPCH              -- make will create TPCH (set in makefile)
+ * DATABASE values, explained:
+ *   DB2        -- use the IBM DB2 dialect in QGEN
+ *   INFORMIX   -- use the Informix dialect in QGEN
+ *   SQLSERVER  -- use the Microsoft SQL Server dialect in QGEN
+ *   SYBASE     -- use the Sybase dialect in QGEN
+ *   TDAT       -- use the Teradata dialect in QGEN
  */
 
 #define @DATABASE@
@@ -47,18 +25,22 @@
 #define RNG_TEST
 #define _FILE_OFFSET_BITS 64
 
+/* SIZEOF_LONG check */
 #if (@SIZEOF_LONG@ == 8)
 #define SIGNED_64_BIT_C_TYPE long
 #define SIGNED_64_BIT_PRINTF_MODIFIER "l"
 #else
+/* SIZEOF_LONG_LONG check */
 #if (@SIZEOF_LONG_LONG@ == 8)
 #define SIGNED_64_BIT_C_TYPE long long
 #define SIGNED_64_BIT_PRINTF_MODIFIER "ll"
 #else
+/* SIZEOF_SHORT check */
 #if (@SIZEOF_SHORT@ == "8")
 #define SIGNED_64_BIT_C_TYPE short
 #define SIGNED_64_BIT_PRINTF_MODIFIER "s"
 #else
+/* SIZEOF_INT check */
 #if (@SIZEOF_INT@ == "8")
 #define SIGNED_64_BIT_C_TYPE int
 #define SIGNED_64_BIT_PRINTF_MODIFIER
@@ -72,6 +54,18 @@
 #define DSS_HUGE          SIGNED_64_BIT_C_TYPE
 #define HUGE_FORMAT       "%" SIGNED_64_BIT_PRINTF_MODIFIER "d"
 #define HUGE_DATE_FORMAT  "%02" SIGNED_64_BIT_PRINTF_MODIFIER "d"
+
+#cmakedefine01 CSV_OUTPUT_FORMAT
+#if CSV_OUTPUT_FORMAT
+#define SEPARATOR ',' /* field spearator for generated flat files */
+#define DOUBLE_QUOTE_OUTPUT_STRINGS /* In the SSB data set, we may have commas in strings, so let's enclose (all of) them in quotes. */
+#ifndef EOL_HANDLING
+#define EOL_HANDLING /* Note: This should already be defined by CMake; only "emphasizing" here */
+#endif
+#else
+#define SEPARATOR '|'
+#endif
+
 
 #cmakedefine01 HAVE_GETOPT
 #if (HAVE_GETOPT == 1)

@@ -391,9 +391,9 @@ extern tdef tdefs[];
 #define  ADHOC_DFLT "adhoc.dss"		/* default file name for adhoc vars */
 
 /******* output macros ********/
-#ifndef SEPARATOR
-#define SEPARATOR '|' /* field spearator for generated flat files */
-#endif
+
+/* SEPARATOR, the field separator, has moved to config.h */
+
 /* Data type flags for a single print routine */
 #define DT_STR		0
 #ifndef MVS
