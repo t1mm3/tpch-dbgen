@@ -706,7 +706,7 @@ main (int ac, char **av)
 			{
 			if (verbose > 0)
 				fprintf (stderr,
-				"Generating update pair #%ld for %s",
+				"Generating update pair #%ld for %s: ",
 				upd_num + 1, tdefs[ORDER_LINE].comment);
 			insert_orders_segment=0;
 			insert_lineitem_segment=0;
@@ -744,7 +744,7 @@ main (int ac, char **av)
 				else
 					rowcnt = tdefs[i].base;
 				if (verbose > 0)
-					fprintf (stderr, "Generating data for %s", tdefs[i].comment);
+					fprintf (stderr, "Generating data for the %s: ", tdefs[i].comment);
 				gen_tbl ((int)i, minrow, rowcnt, upd_num);
 				if (verbose > 0)
 					fprintf (stderr, "done.\n");

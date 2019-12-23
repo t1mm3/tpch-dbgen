@@ -16,12 +16,17 @@ message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 
 # Values of properties will be forwarded into the config.h
 set(DATABASE "DB2" CACHE STRING "Command language dialect to target with the qgen query generator (\"DATABASE\"")
-set_property(CACHE DATABASE PROPERTY STRINGS INFORMIX DB2 TDAT SQLSERVER SYBASE ORACLE VECTORWISE POSTGRES)
+set_property(CACHE DATABASE PROPERTY STRINGS INFORMIX DB2 TDAT SQLSERVER SYBASE ORACLE VECTORWISE POSTGRES MYSQL)
 
 set(WORKLOAD TPCH CACHE STRING "Choice of benchmark / query workload (\"WORKLOAD\")")
 set_property(CACHE WORKLOAD PROPERTY STRINGS TPCH)
 
+set(CSV_OUTPUT_FORMAT OFF CACHE BOOL "Use CSV output format")
 set(EOL_HANDLING OFF CACHE BOOL "Skip separator after the last field in generated lines?")
+
+if (CSV_OUTPUT_FORMAT AND NOT EOL_HANDLING)
+	message(WARNING "When CSV is used for the output format, EOL_HANDLING is ignored and a separator is _never_ printed after the last field on the line (the equivalent of EOL_HANDLING being ON).")
+endif()
 
 check_type_size("long long"        SIZEOF_LONG_LONG)
 check_type_size("long"             SIZEOF_LONG)
@@ -73,10 +78,10 @@ if ("${CMAKE_C_COMPILER_ID}" STREQUAL "Clang")
 	set_property(TARGET dbgen qgen APPEND PROPERTY COMPILE_OPTIONS -Wall -Wextra -Wno-missing-field-initializers)
 	set_property(TARGET dbgen qgen APPEND PROPERTY COMPILE_DEFINITIONS _POSIX_C_SOURCE=200809L)
 elseif ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
-	set_property(TARGET dbgen qgen APPEND PROPERTY COMPILE_OPTIONS -Wall -Wextra -Wno-missing-field-initializers)
+	set_property(TARGET dbgen qgen APPEND PROPERTY COMPILE_OPTIONS -Wall -Wextra -Wno-missing-field-initializers -Wno-format-truncation)
 	set_property(TARGET dbgen qgen APPEND PROPERTY COMPILE_DEFINITIONS _POSIX_C_SOURCE=200809L)
 elseif ("${CMAKE_C_COMPILER_ID}" STREQUAL "MSVC")
 	set_property(TARGET dbgen qgen APPEND PROPERTY COMPILE_OPTIONS "/W3")
 	set_property(TARGET dbgen qgen APPEND PROPERTY COMPILE_DEFINITIONS _CRT_NONSTDC_NO_DEPRECATE _CRT_SECURE_NO_WARNINGS)
-endif ("${CMAKE_C_COMPILER_ID}" STREQUAL "Clang")
+endif ()
 
