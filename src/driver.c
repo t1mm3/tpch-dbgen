@@ -334,11 +334,11 @@ usage (void)
 	fprintf (stderr, "%s\n%s\n\t%s\n%s %s\n\n",
 		"USAGE:",
 		"dbgen [-{vf}][-T {pcsoPSOL}]",
-		"[-s <scale>][-C <procs>][-S <step>]",
+		"[-s <scale>][-C <chunks>][-S <step>]",
 		"dbgen [-v] [-O m] [-s <scale>]",
 		"[-U <updates>]");
 	fprintf (stderr, "Basic Options\n===========================\n");
-	fprintf (stderr, "-C <n> -- separate data set into <n> chunks (requires -S, default: 1)\n");
+	fprintf (stderr, "-C <n> -- separate data set into <n> chunks (requires -S; default: 1)\n");
 	fprintf (stderr, "-f     -- force. Overwrite existing files\n");
 	fprintf (stderr, "-h     -- display this message\n");
 	fprintf (stderr, "-q     -- enable QUIET mode\n");
